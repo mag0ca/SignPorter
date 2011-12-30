@@ -1,0 +1,23 @@
+# Valid Database Types are mysql and sqlite
+# URL for sqlite should look like path/to/folder/SignPorter.db
+# URL for MySQL should look like //localhost:3306/Database
+# For the Random teleporter 
+# for X and Z random coord do not exceed 2,147,483,647 in either the positive or negative axies as this could cause unexpected results
+# for Ymax do not exceed 127 and do not use a negative for Ymin
+
+Database:
+        Type: sqlite
+        URL: SignPorter.db
+        Username: minecraft
+        Password: password
+        Table: SignPorter
+Random:
+        Enabled: true
+        Xmax: 200
+        Ymax: 100
+        Zmax: 200
+        Xmin: -200
+        Ymin: 30
+        Zmin: -200
+Logging:
+        Enabled: false

@@ -1,0 +1,11 @@
+name: SignPorter
+main: me.mag0ca.SignPorter.SignPorter
+version: 0.0.1
+author: mag0ca
+website: http://wiki.mag0ca.ca
+commands:
+    sptp:
+        description: Teleport to sign or Player
+        usage: /sptp p:Player
+               /sptp SignName
+        aliases: signporter
