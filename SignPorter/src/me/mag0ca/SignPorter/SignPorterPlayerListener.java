@@ -31,25 +31,30 @@ public class SignPorterPlayerListener extends PlayerListener
 	{
 		if (!event.isCancelled())
 		{
+			MAG0CALogger.logger("event is not cancelled");
 			if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_AIR)
 			{
+				MAG0CALogger.logger("clicked on air");
 				return;
 			}
 
 			if ((event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_BLOCK) && (event.getClickedBlock().getTypeId() == Material.WALL_SIGN.getId() || event.getClickedBlock().getTypeId() == Material.SIGN_POST.getId()))
 			{
 				Player player = event.getPlayer();
-
+				MAG0CALogger.logger("Player " + player.getDisplayName() + " interacted with " + event.getClickedBlock().getState().getType().name());
+				
 				//is the sign a SignPorter?
 				Sign sign = (Sign) event.getClickedBlock().getState();
 				if (sign.getLine(0).compareToIgnoreCase(ChatColor.DARK_BLUE + "[SignPorter]") == 0)
 				{
+					MAG0CALogger.logger("Sign is a SignPorter");
 					//does the player have the correct permissions?
 					if (player.hasPermission("signporter.use") || player.hasPermission("signporter.*"))
 					{
 						//allow the sign to be broken
 						if (player.isSneaking() || sign.getLine(2).isEmpty())
 						{
+							MAG0CALogger.logger("Player is Sneeking or line 2 is empty");
 							return;
 						}
 						String destinationName = sign.getLine(2);
@@ -114,7 +119,7 @@ public class SignPorterPlayerListener extends PlayerListener
 							} catch (SQLException e1) {MAG0CALogger.logger("statement processor failed " + e1.getMessage());}
 
 							String columns = "*";
-							String where = "Name=\'" + destinationName + "\'";
+							String where = "Name = \'" + destinationName + "\'";
 							try 
 							{
 								MAG0CALogger.logger("Executing: "  + "SELECT " + columns + " FROM " + config.DBTable + " WHERE " + where);
@@ -169,8 +174,11 @@ public class SignPorterPlayerListener extends PlayerListener
 					{
 						player.sendMessage("you do  not have permissions to use a sign portal");
 					}
+					return;
 				}
-			}	
+				return;
+			}
+			return;
 		}
 	}
 }

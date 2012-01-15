@@ -74,13 +74,13 @@ public class SignPorter extends JavaPlugin
 //		}
 		getCommand("signporter").setExecutor(myExecutor);
 
-		log.info("[SignPort] is enabled");
+		log.info("[SignPorter] is enabled");
 	}
 
 	//run on plugin shutdown. clean up procedure
 	public void onDisable()
 	{
-		log.info("[SignPort] is disabled");
+		log.info("[SignPorter] is disabled");
 	}
 	
 	//load the config file and create it if it does not exist
@@ -250,19 +250,28 @@ public class SignPorter extends JavaPlugin
 		return TF;	
 	}
 
-//	public boolean checkDestination(String DestinationName) 
+//	public boolean checkSourceB(String SourceName)  
 //	{
 //		ResultSet results;
 //		boolean TF = false;
+//		Connection connection = null;
 //		Statement statement = null;
+//		PreparedStatement ps = null;
 //		try 
 //		{
+//			MAG0CALogger.logger("Initalizing Database connection");
+//			connection = DriverManager.getConnection("jdbc:" + DBType + ":" + config.DBURL, config.DBUsername, config.DBPassword);
 //			MAG0CALogger.logger("Readying statement processor");
 //			statement = connection.createStatement();
+//			
+//			String Select = "SELECT Name FROM " + config.DBTable + " WHERE Name=?";
+//			ps = connection.prepareStatement(Select);
+//			ps.
+//			
 //		} catch (SQLException e1) {MAG0CALogger.logger("statement processor failed " + e1.getMessage());}
 //		
-//		String columns = "Destination";
-//		String where = "Destination=\'" + DestinationName + "\'";
+//		String columns = "Name";
+//		String where = "Name = \'" + SourceName + "\'";
 //		try 
 //		{
 //			//MAG0CALogger.logger("checking the statement " + statement.isClosed() + " as well as the connection " + connection.isClosed());
@@ -277,14 +286,18 @@ public class SignPorter extends JavaPlugin
 //			try 
 //			{
 //				results = statement.getResultSet();
-//				Name = results.getString("Destination");
-//				MAG0CALogger.logger("Destination results " + Name);
-//				if (Name.equalsIgnoreCase(DestinationName))
+//				if (results.next())
 //				{
-//					TF = true;
+//					Name = results.getString("Name");
+//					MAG0CALogger.logger("Source results " + Name);
+//					if (Name.compareToIgnoreCase(SourceName) == 0 )
+//					{
+//						TF = true;
+//					}
 //				}
 //				results.close();
 //			} catch (SQLException e) {MAG0CALogger.logger("Error while getting results " + e.getMessage());	}
+//
 //		}
 //		return TF;
 //	}
@@ -304,7 +317,7 @@ public class SignPorter extends JavaPlugin
 		} catch (SQLException e1) {MAG0CALogger.logger("statement processor failed " + e1.getMessage());}
 		
 		String columns = "Name";
-		String where = "Name=\'" + SourceName + "\'";
+		String where = "Name = \'" + SourceName + "\'";
 		try 
 		{
 			//MAG0CALogger.logger("checking the statement " + statement.isClosed() + " as well as the connection " + connection.isClosed());
@@ -323,7 +336,7 @@ public class SignPorter extends JavaPlugin
 				{
 					Name = results.getString("Name");
 					MAG0CALogger.logger("Source results " + Name);
-					if (Name.equalsIgnoreCase(SourceName))
+					if (Name.compareToIgnoreCase(SourceName) == 0 )
 					{
 						TF = true;
 					}

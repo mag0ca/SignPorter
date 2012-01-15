@@ -17,26 +17,26 @@ public class config
 	static int RandomYmin;
 	
 	static String ColumnsMySQL = 
-		  "(id int NOT NULL AUTO_INCREMENT PRIMARY KEY," +	//0
-		  "Name varchar(32) UNIQUE," +						//1
-		  "Destination varchar(32)," +						//2
-		  "coordX int NOT NULL," +							//3
-		  "coordY int NOT NULL," +							//4
-		  "coordZ int NOT NULL," +							//5
-		  "world varchar(64) NOT NULL," +					//6
-		  "Cost int," +										//7
-		  "Creator varchar(64))"; 							//8
+		  "(id int NOT NULL AUTO_INCREMENT PRIMARY KEY," +			//0
+		  "Name varchar(32) UNIQUE ," +								//1
+		  "Destination varchar(32)," +								//2
+		  "coordX int NOT NULL," +									//3
+		  "coordY int NOT NULL," +									//4
+		  "coordZ int NOT NULL," +									//5
+		  "world varchar(64) NOT NULL," +							//6
+		  "Cost int," +												//7
+		  "Creator varchar(64))"; 									//8
 		  
 
 	static String ColumnsSQLite = 
 		
-		  "(id INTEGER NOT NULL PRIMARY KEY," + 	//0
-		  "Name varchar(32) UNIQUE," +				//1
-		  "Destination varchar(32)," +				//2
-		  "coordX INTEGER NOT NULL," +				//3
-		  "coordY INTEGER NOT NULL," +				//4
-		  "coordZ INTEGER NOT NULL," +				//5
-		  "world varchar(64) NOT NULL," +			//6
-		  "Cost INTEGER," +							//7
-		  "Creator varchar(64))";					//8
+		  "(id INTEGER NOT NULL PRIMARY KEY," + 					//0
+		  "Name varchar(32) UNIQUE collate nocase," +				//1
+		  "Destination varchar(32)collate nocase," +				//2
+		  "coordX INTEGER NOT NULL," +								//3
+		  "coordY INTEGER NOT NULL," +								//4
+		  "coordZ INTEGER NOT NULL," +								//5
+		  "world varchar(64) NOT NULL," +							//6
+		  "Cost INTEGER," +											//7
+		  "Creator varchar(64))";									//8
 }

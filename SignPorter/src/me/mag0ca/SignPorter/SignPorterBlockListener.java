@@ -49,8 +49,8 @@ public class SignPorterBlockListener extends BlockListener
 			player = event.getPlayer();
 
 			//is it a sign?
-			if (sign.getType() == Material.WALL_SIGN || sign.getType() == Material.SIGN_POST)
-			{
+			//if (sign.getType() == Material.WALL_SIGN || sign.getType() == Material.SIGN_POST)
+			//{
 				//is it a SignPorter?
 				if (event.getLine(0).compareToIgnoreCase("[SignPorter]") == 0)
 				{
@@ -161,7 +161,7 @@ public class SignPorterBlockListener extends BlockListener
 						return;
 					}
 				}
-			}
+			//}
 		}
 	}
 
@@ -169,7 +169,12 @@ public class SignPorterBlockListener extends BlockListener
 	{
 		if (event.getBlockAgainst().getTypeId() == Material.WALL_SIGN.getId() || event.getBlockAgainst().getTypeId() == Material.SIGN_POST.getId())
 		{
-			event.setCancelled(true);
+			Sign sign = (Sign) event.getBlockAgainst().getState();
+			if (sign.getLine(0).equalsIgnoreCase(ChatColor.DARK_BLUE + "[SignPorter]"))
+			{
+				MAG0CALogger.logger("Block is a Signporter cancel event");
+				event.setCancelled(true);
+			}
 		}
 	}
 	
@@ -177,6 +182,7 @@ public class SignPorterBlockListener extends BlockListener
 	{
 		if (!event.isCancelled())
 		{
+			MAG0CALogger.logger("event is not cancelled");
 			if (event.getBlock().getTypeId() == Material.SIGN_POST.getId() || event.getBlock().getTypeId() == Material.WALL_SIGN.getId())
 			{
 				Block signa = event.getBlock();
@@ -213,8 +219,11 @@ public class SignPorterBlockListener extends BlockListener
 						player.sendMessage("[SignPorter] you do no have the correct permissions to break this portal");
 						event.setCancelled(true);
 					}
+					return;
 				}
+				return;
 			}
+			return;
 		}
 	}
 
