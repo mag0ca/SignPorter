@@ -9,7 +9,7 @@ the signs will be in the form
 <Line1>    [SignPort]
 <Line2>    Sign Name
 <Line3>    Destination sign name or X,Y,Z coords
-<Line4>    Cost <- not implemented yet
+<Line4>    Must be left blank (Will be cost at some point)
 
 
 Line 2 and 3 are optional but you will have to have at least one to make it useful
