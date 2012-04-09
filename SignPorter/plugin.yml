@@ -1,6 +1,6 @@
 name: SignPorter
 main: me.mag0ca.SignPorter.SignPorter
-version: 0.0.1
+version: 0.1.0
 author: mag0ca
 website: http://wiki.mag0ca.ca
 commands:

@@ -13,11 +13,12 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerListener;
 
-public class SignPorterPlayerListener extends PlayerListener
+public class SignPorterPlayerListener implements Listener
 {
 	private SignPorter plugin;
 	
@@ -27,6 +28,7 @@ public class SignPorterPlayerListener extends PlayerListener
 	}
 
 	//run when a player interacts with a sign object
+	@EventHandler()
 	public void onPlayerInteract( PlayerInteractEvent event )
 	{
 		if (!event.isCancelled())
@@ -64,13 +66,13 @@ public class SignPorterPlayerListener extends PlayerListener
 						//does the sign of direct coordinates on it?
 						if (L.length == 3)
 						{
-							int[] S = new int[L.length];
+							double[] S = new double[L.length];
 							for (int i = 0; i > L.length; i++)
 							{
-								S[i] = Integer.parseInt(L[i]);
+								S[i] = (Integer.parseInt(L[i]));
 							}
 							Location Locate = new Location(player.getWorld(),S[0], S[1], S[2]);
-
+							
 							//and your off
 							player.teleport(Locate);
 							player.sendMessage("you have just been teleported to " + Locate.getX() + ","  + Locate.getY() + "," + Locate.getZ() + " Hope you had a safe trip.");

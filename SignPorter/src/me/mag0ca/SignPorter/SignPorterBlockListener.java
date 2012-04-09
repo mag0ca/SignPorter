@@ -12,13 +12,15 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class SignPorterBlockListener extends BlockListener 
+
+public class SignPorterBlockListener implements Listener 
 {
 	protected SignPorter plugin;
 	protected int SourceX = 0;
@@ -34,13 +36,14 @@ public class SignPorterBlockListener extends BlockListener
 	protected String DestinationName;
 	protected Player player;
 	protected Block sign;
-	
+
 	public SignPorterBlockListener( SignPorter instance ) 
 	{
     	plugin = instance;
 }
 	
 	//activated when a  sign object is changed
+	@EventHandler()
 	public void onSignChange( SignChangeEvent event )
 	{
 		if (!event.isCancelled())
@@ -164,7 +167,7 @@ public class SignPorterBlockListener extends BlockListener
 			//}
 		}
 	}
-
+	@EventHandler()
 	public void onBlockPlace( BlockPlaceEvent event)
 	{
 		if (event.getBlockAgainst().getTypeId() == Material.WALL_SIGN.getId() || event.getBlockAgainst().getTypeId() == Material.SIGN_POST.getId())
@@ -178,6 +181,7 @@ public class SignPorterBlockListener extends BlockListener
 		}
 	}
 	
+	@EventHandler()
 	public void onBlockBreak( BlockBreakEvent event)
 	{
 		if (!event.isCancelled())

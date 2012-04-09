@@ -1,7 +1,6 @@
 /* 
  * TODO:
  * give the ability to use direct coordinates on signs and in the command
- * test MySQL support
  * economy support
  * 
  * Known Bugs:
@@ -25,7 +24,6 @@ import me.mag0ca.utils.MAG0CALogger;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -33,8 +31,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class SignPorter extends JavaPlugin
 {
 	Logger log = Logger.getLogger("Minecraft");
-	private final SignPorterPlayerListener playerListener = new SignPorterPlayerListener(this);
-	private final SignPorterBlockListener blockListener = new SignPorterBlockListener(this);
 	private SignPorterCommandExecutor myExecutor;
 	String DBType;
 	
@@ -56,10 +52,8 @@ public class SignPorter extends JavaPlugin
 		
 		//register events with Bukkit that will activate our plugin
 		PluginManager pm = this.getServer().getPluginManager();
-		pm.registerEvent(Event.Type.SIGN_CHANGE, blockListener, Event.Priority.Normal, this);
-		pm.registerEvent(Event.Type.BLOCK_PLACE, blockListener, Event.Priority.Normal, this);
-		pm.registerEvent(Event.Type.BLOCK_BREAK, blockListener, Event.Priority.Normal, this);
-		pm.registerEvent(Event.Type.PLAYER_INTERACT, playerListener, Event.Priority.Normal, this);
+		pm.registerEvents(new SignPorterBlockListener(this) , this);
+		pm.registerEvents(new SignPorterPlayerListener(this), this);
 		
 		//register console commands with Bukkit
 		myExecutor = new SignPorterCommandExecutor(this);
